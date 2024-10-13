@@ -1,6 +1,6 @@
 import './App.css'
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { ThreadCreate } from './components/PostCreate';
+import { ThreadCreate } from './components/ThredsCreate/PostCreate';
 import { ViewPost } from './components/ViewThreads/ViewThreads';
 
 function App() {
