@@ -1,49 +1,26 @@
-import { useEffect, useState } from 'react'
 import './App.css'
-
-type PostData = {
-  id: string,
-  title: string
-}
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { PostCreate } from './components/PostCreate';
+import { ViewPost } from './components/ViewPost';
 
 function App() {
-  const [data, setData] = useState<PostData[]>([])
-
-  //データ取得
-  async function getData(n: string) {
-    const url = "https://railway.bulletinboard.techtrain.dev/threads?offset=" + n;
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`レスポンスステータス: ${response.status}`);
-      }
-  
-      const json = await response.json();
-      setData(json)
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
-
-  useEffect(() => {
-    const n = "10";
-    getData(n);
-  }, []);
-
+  const navigate = useNavigate();
   return (
-    <>
-      <div>
-        <h1>データ一覧</h1>
-        <div className="card-container">       
-          {data.map((item, index) => (
-            <div className="card" key={index}>
-              <h2 className="card-title">{item.title}</h2>
-            </div>
-          ))}
-        </div>
+    <div>
+      <div className="App">
+        <button onClick={() => {
+          navigate('/')
+        }}>データ一覧</button>
+        <button onClick={() => {
+          navigate('/threads/new')
+        }}>新規作成</button>
 
+        <Routes>
+          <Route path="/" element={<ViewPost />} />
+          <Route path="/threads/new" element={<PostCreate />} />
+        </Routes>
       </div>
-    </>
+    </div>
   )
 }
 
