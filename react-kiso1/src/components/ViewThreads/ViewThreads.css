@@ -1,0 +1,32 @@
+.card-container {
+    gap: 16px; /* カード同士の間隔を設定 */
+}
+  
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 16px;
+    width: 300px; /* カードの幅を設定 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-title {
+    font-size: 1.25rem; /* 文字を少し大きめに設定 */
+    margin-bottom: 8px;
+    color: black;
+}
+
+.mokuzi {
+    display: flex;
+    gap: 16px; /* カード同士の間隔を設定 */
+}
+
+.mokuzi-button {
+    font-size: 0.7rem; /* 文字を少し大きめに設定 */
+    width: 100px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}

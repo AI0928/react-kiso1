@@ -35,7 +35,7 @@ export const ThreadCreate = () => {
                 <input 
                     value={title}
                     onChange={e => setTitle(e.target.value)}
-                    ></input>
+                ></input>
             </label>
             <button onClick={postThread}>投稿</button>
             {isTitle && <p>タイトルが空白です</p>}

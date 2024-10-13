@@ -1,7 +1,7 @@
 import './App.css'
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ThreadCreate } from './components/PostCreate';
-import { ViewPost } from './components/ViewPost';
+import { ViewPost } from './components/ViewThreads/ViewThreads';
 
 function App() {
   const navigate = useNavigate();
