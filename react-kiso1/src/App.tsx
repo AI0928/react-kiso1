@@ -1,6 +1,6 @@
 import './App.css'
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { PostCreate } from './components/PostCreate';
+import { ThreadCreate } from './components/PostCreate';
 import { ViewPost } from './components/ViewPost';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<ViewPost />} />
-          <Route path="/threads/new" element={<PostCreate />} />
+          <Route path="/threads/new" element={<ThreadCreate />} />
         </Routes>
       </div>
     </div>
