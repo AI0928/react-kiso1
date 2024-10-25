@@ -1,5 +1,5 @@
 .card-container {
-    gap: 16px; /* カード同士の間隔を設定 */
+    gap: 50px; /* カード同士の間隔を設定 */
 }
   
 .card {
@@ -26,7 +26,7 @@
 .mokuzi-button {
     font-size: 0.7rem; /* 文字を少し大きめに設定 */
     width: 100px;
-    height: 80px;
+    height: 40px;
     margin-left: auto;
     margin-right: auto;
 }

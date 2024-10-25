@@ -1,18 +1,28 @@
 import { useEffect, useState} from 'react'
-import './ViewThreads.css'
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { PostCreate } from '../CreatePost/CreatePost';
+import { useSearchParams } from 'react-router-dom';
+
+type ThreadData = {
+    threadId: string,
+    posts: PostData[]
+}
 
 type PostData = {
     id: string,
-    title: string
+    post: string
 }
 
-export const ViewPost = () => {
-    const [data, setData] = useState<PostData[]>([])
+export const ViewPosts = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const  {thread_id} = useParams();
+    searchParams.get("title");//?
+
+    const [data, setData] = useState<ThreadData>()
     const [offset, setOffset] = useState<number>(0)
     //データ取得
     async function getData(offset: number) {
-        const url = "https://railway.bulletinboard.techtrain.dev/threads?offset=" + offset;
+        const url = "https://railway.bulletinboard.techtrain.dev/threads/" +  thread_id + "/posts?offset=" + offset;
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -20,6 +30,7 @@ export const ViewPost = () => {
             }
         
             const json = await response.json();
+            console.log(json)
             setData(json)
         } catch (error) {
             console.error((error as Error).message);
@@ -39,22 +50,23 @@ export const ViewPost = () => {
 
     return (
         <div className='viewThread-container'>
-            <h1>データ一覧</h1>
+            <h1>{searchParams}</h1>
             <div className='mokuzi'>            
                 <button className='mokuzi-button' onClick={() => changeOffset(-100)}>100件前へ</button>
-                <button className='mokuzi-button' onClick={() => changeOffset(-10)}>前のページへ</button>
+                <button className='mokuzi-button' onClick={() => changeOffset(-10)}>前の10件</button>
                 <h2>{offset}件目から表示</h2>
-                <button className='mokuzi-button'onClick={() => changeOffset(10)}>次のページへ</button>
+                <button className='mokuzi-button'onClick={() => changeOffset(10)}>次の10件</button>
                 <button className='mokuzi-button'onClick={() => changeOffset(100)}>100件次へ</button>
             </div>
 
             <div className="card-container">       
-                {data.map((item, index) => (
+                {data && data.posts.map((item, index) => (
                     <div className="card" key={index}>
-                        <h2 className="card-title"><Link to={"/threads/" + item.id + "title?" + item.title}>{item.title}</Link></h2>
+                        <h2 className="card-title">{item.post}</h2>
                     </div>
                 ))}
-          </div>
+            </div>
+            {thread_id && <PostCreate thread_id={thread_id} getData={getData} offset={offset} />}
         </div>
     );
 };

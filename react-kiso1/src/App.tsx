@@ -2,6 +2,7 @@ import './App.css'
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ThreadCreate } from './components/ThredsCreate/PostCreate';
 import { ViewPost } from './components/ViewThreads/ViewThreads';
+import { ViewPosts } from './components/ViewPosts/ViewPosts';
 
 function App() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ViewPost />} />
           <Route path="/threads/new" element={<ThreadCreate />} />
+          <Route path="/threads/:thread_id" element={<ViewPosts />} />
         </Routes>
       </div>
     </div>

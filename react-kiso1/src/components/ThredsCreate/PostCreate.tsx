@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const ThreadCreate = () => {
     const [title, setTitle] = useState("");
-    const [isTitle, setIsTitle] = useState(false);
+    const navigate = useNavigate();
     const postThread = async () => {
-        if (title !== ""){
-            console.log(title)
+        if (title.trim().length !== 0){
             const url = "https://railway.bulletinboard.techtrain.dev/threads";
             const options = {
                 method: "POST",
@@ -15,21 +15,17 @@ export const ThreadCreate = () => {
             try {
                 const response = await fetch(url, options);
                 const data = await response.json();
-                console.log(data)
                 setTitle("")
-                setIsTitle(false)
+                navigate('/threads/' + data.id);
                 return data;
             } catch (e) {
                 return e;
             }
         }
-        else{
-            setIsTitle(true)
-        }
     }
     return (
         <div>
-            <h1>PostCreate</h1>
+            <h1>新規作成</h1>
             <label>
                 スレッド名
                 <input 
@@ -37,8 +33,7 @@ export const ThreadCreate = () => {
                     onChange={e => setTitle(e.target.value)}
                 ></input>
             </label>
-            <button onClick={postThread}>投稿</button>
-            {isTitle && <p>タイトルが空白です</p>}
+            <button disabled={title.trim().length === 0} onClick={postThread}>投稿</button>
         </div>
     );
 };
