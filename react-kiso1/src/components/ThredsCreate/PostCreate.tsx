@@ -16,7 +16,7 @@ export const ThreadCreate = () => {
                 const response = await fetch(url, options);
                 const data = await response.json();
                 setTitle("")
-                navigate('/threads/' + data.id);
+                navigate('/threads/' + data.id + "?title=" + data.title);
                 return data;
             } catch (e) {
                 return e;
@@ -25,7 +25,7 @@ export const ThreadCreate = () => {
     }
     return (
         <div>
-            <h1>新規作成</h1>
+            <h1>スレッド新規作成</h1>
             <label>
                 スレッド名
                 <input 

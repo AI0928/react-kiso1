@@ -11,10 +11,10 @@ function App() {
       <div className="App">
         <button onClick={() => {
           navigate('/')
-        }}>データ一覧</button>
+        }}>スレッド一覧</button>
         <button onClick={() => {
           navigate('/threads/new')
-        }}>新規作成</button>
+        }}>スレッド新規作成</button>
 
         <Routes>
           <Route path="/" element={<ViewPost />} />

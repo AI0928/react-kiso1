@@ -39,7 +39,7 @@ export const ViewPost = () => {
 
     return (
         <div className='viewThread-container'>
-            <h1>データ一覧</h1>
+            <h1>スレッド一覧</h1>
             <div className='mokuzi'>            
                 <button className='mokuzi-button' onClick={() => changeOffset(-100)}>100件前へ</button>
                 <button className='mokuzi-button' onClick={() => changeOffset(-10)}>前のページへ</button>
